@@ -38,11 +38,14 @@ def generate_launch_description():
         'lasamplestep': 0.005,
         #'use_sim_time': True
     }
+
     return LaunchDescription([
         launch_ros.actions.Node(
             package='slam_gmapping', 
-            node_executable='slam_gmapping', 
-            parameters=[param_substitutions],
+            executable='slam_gmapping',
+            parameters=[param_substitutions,
+                { 'use_sim_time': True }
+            ],
             # arguments=['--ros-args','--log-level','debug'],
             output='screen'),
     ])
